@@ -50,7 +50,7 @@ set rtp+=~/.vim/bundle/vundle
 
 call vundle#begin()
 Plugin 'gmarik/vundle'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'vim-pandoc/vim-markdownfootnotes'
@@ -66,8 +66,8 @@ call vundle#end()
 " Plugin-options
 
 
-let g:ycm_global_ycm_extra_conf = '~/.config/ycm/.ycm_extra_conf.py'
-let g:ycm_extra_conf_globlist = ['~/entwicklung/c++/*', '~/Studium/*', '~/entwicklung/test/*', '/tmp/*']
+"let g:ycm_global_ycm_extra_conf = '~/.config/ycm/.ycm_extra_conf.py'
+"let g:ycm_extra_conf_globlist = ['~/entwicklung/c++/*', '~/Studium/*', '~/entwicklung/test/*', '/tmp/*']
 
 
 let g:syntastic_check_on_open = 1
