@@ -90,7 +90,7 @@ let g:clang_format#style_options = {
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#whitespace#checks = ['indent']
+let g:airline#extensions#whitespace#enabled = 0
 
 
 au BufRead,BufNewFile *.md set filetype=markdown
