@@ -69,7 +69,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_enable_balloons = 1
 let g:syntastic_enable_signs = 0
 let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++1y -stdlib=libc++'
+let g:syntastic_cpp_compiler_options = ' -std=c++1y -stdlib=libc++ -Wall -Wextra -Wpedantic'
 let g:syntastic_python_python_exec = '/path/to/python3'
 let g:syntastic_filetype_map = { 'pandoc': 'md'}
 
