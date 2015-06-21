@@ -46,6 +46,7 @@ let mapleader=","
 
 " Vundle
 filetype off
+filetype plugin indent on
 set rtp+=~/.vim/bundle/vundle
 
 call vundle#begin()
@@ -68,6 +69,8 @@ call vundle#end()
 
 let g:ycm_global_ycm_extra_conf = '~/.config/ycm/.ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = ['~/entwicklung/c++/*', '~/Studium/*', '~/entwicklung/test/*', '/tmp/*']
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt=0
 
 
 let g:syntastic_check_on_open = 1
@@ -102,6 +105,7 @@ let g:clang_format#style_options = {
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#whitespace#enabled = 0
+
 
 
 au BufRead,BufNewFile *.md set filetype=markdown
