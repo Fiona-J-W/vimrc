@@ -15,6 +15,8 @@ set wildmenu " zsh-style autocomplete
 set wildmode=list:longest
 set laststatus=2
 
+let mapleader=","
+
 
 set directory^=$HOME/.vim/swapfile//
 set undofile
@@ -26,7 +28,6 @@ set incsearch  " search while typing
 set hlsearch   " highlight search-results
 set showmatch  " show matching braces
 
-highlight ExtraWhitespace ctermbg=red guibg=red
 
 " Changes the regex-parser
 nnoremap / /\v
@@ -42,10 +43,14 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <C-PageUp> :tabprevious<CR>
 nnoremap <C-PageDown> :tabnext<CR>
 
-let mapleader=","
+
+set listchars=tab:⎸\ ,trail:·
+set list
+
 
 " Vundle
 filetype off
+filetype plugin indent on
 set rtp+=~/.vim/bundle/vundle
 
 call vundle#begin()
@@ -68,6 +73,8 @@ call vundle#end()
 
 "let g:ycm_global_ycm_extra_conf = '~/.config/ycm/.ycm_extra_conf.py'
 "let g:ycm_extra_conf_globlist = ['~/entwicklung/c++/*', '~/Studium/*', '~/entwicklung/test/*', '/tmp/*']
+"set completeopt-=preview
+"let g:ycm_add_preview_to_completeopt=0
 
 
 let g:syntastic_check_on_open = 1
@@ -77,6 +84,12 @@ let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++1y -stdlib=libc++ -Wall -Wextra -Wpedantic'
 let g:syntastic_python_python_exec = '/path/to/python3'
 let g:syntastic_filetype_map = { 'pandoc': 'md'}
+
+
+let g:pandoc#modules#disabled = ["folding", "spell"]
+let g:pandoc#command#latex_engine= "pdflatex"
+let g:pandoc#syntax#codeblocks#embeds#langs = ["haskell", "literatehaskell=lhaskell", "cpp", "java"]
+let g:pandoc#syntax#conceal#blacklist = ["codeblock_start", "codeblock_delim"]
 
 
 let g:clang_format#style_options = {
@@ -96,6 +109,7 @@ let g:clang_format#style_options = {
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#whitespace#enabled = 0
+
 
 
 au BufRead,BufNewFile *.md set filetype=markdown
