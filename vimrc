@@ -15,6 +15,8 @@ set wildmenu " zsh-style autocomplete
 set wildmode=list:longest
 set laststatus=2
 
+let mapleader=","
+
 
 set directory^=$HOME/.vim/swapfile//
 set undofile
@@ -41,7 +43,6 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <C-PageUp> :tabprevious<CR>
 nnoremap <C-PageDown> :tabnext<CR>
 
-let mapleader=","
 
 set listchars=tab:⎸\ ,trail:·
 set list
