@@ -79,6 +79,12 @@ let g:syntastic_python_python_exec = '/path/to/python3'
 let g:syntastic_filetype_map = { 'pandoc': 'md'}
 
 
+let g:pandoc#modules#disabled = ["folding", "spell"]
+let g:pandoc#command#latex_engine= "pdflatex"
+let g:pandoc#syntax#codeblocks#embeds#langs = ["haskell", "literatehaskell=lhaskell", "cpp", "java"]
+let g:pandoc#syntax#conceal#blacklist = ["codeblock_start", "codeblock_delim"]
+
+
 let g:clang_format#style_options = {
 	\ "BasedOnStyle": "llvm",
 	\ "IndentWidth": 8,
