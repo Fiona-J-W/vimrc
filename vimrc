@@ -26,7 +26,6 @@ set incsearch  " search while typing
 set hlsearch   " highlight search-results
 set showmatch  " show matching braces
 
-highlight ExtraWhitespace ctermbg=red guibg=red
 
 " Changes the regex-parser
 nnoremap / /\v
@@ -43,6 +42,10 @@ nnoremap <C-PageUp> :tabprevious<CR>
 nnoremap <C-PageDown> :tabnext<CR>
 
 let mapleader=","
+
+set listchars=tab:⎸\ ,trail:·
+set list
+
 
 " Vundle
 filetype off
