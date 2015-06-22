@@ -61,7 +61,6 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'vim-pandoc/vim-markdownfootnotes'
 Plugin 'vim-pandoc/vim-rmarkdown'
 Plugin 'rhysd/vim-clang-format'
-Plugin 'scrooloose/syntastic'
 Plugin 'sjl/gundo.vim'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/Vim-fugitive'
@@ -76,16 +75,7 @@ let g:ycm_global_ycm_extra_conf = '~/.config/ycm/.ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = ['~/entwicklung/c++/*', '~/Studium/*', '~/entwicklung/test/*', '/tmp/*']
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt=0
-
-
-let g:syntastic_check_on_open = 1
-let g:syntastic_enable_balloons = 1
-let g:syntastic_enable_signs = 0
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++1y -stdlib=libc++ -Wall -Wextra -Wpedantic'
-let g:syntastic_python_python_exec = '/path/to/python3'
-let g:syntastic_filetype_map = { 'pandoc': 'md'}
-
+let g:ycm_enable_diagnostic_signs = 0
 
 let g:pandoc#modules#disabled = ["folding", "spell"]
 let g:pandoc#command#latex_engine= "pdflatex"
@@ -110,6 +100,8 @@ let g:clang_format#style_options = {
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_close_button = 0
 
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_WinWidth = 50
