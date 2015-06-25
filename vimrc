@@ -76,6 +76,7 @@ let g:ycm_extra_conf_globlist = ['~/entwicklung/c++/*', '~/Studium/*', '~/entwic
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt=0
 let g:ycm_enable_diagnostic_signs = 0
+nnoremap <leader>t :YcmCompleter GetType<cr>
 
 let g:pandoc#modules#disabled = ["folding", "spell"]
 let g:pandoc#command#latex_engine= "pdflatex"
@@ -105,7 +106,7 @@ let g:airline#extensions#tabline#show_close_button = 0
 
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_WinWidth = 50
-nnoremap <leader>t :Tlist<cr>
+nnoremap <leader>l :Tlist<cr>
 
 au BufRead,BufNewFile *.md set filetype=markdown
 
