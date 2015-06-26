@@ -43,6 +43,15 @@ nnoremap <C-PageDown> :bnext<CR>
 "nnoremap <C-PageUp> :tabprevious<CR>
 "nnoremap <C-PageDown> :tabnext<CR>
 
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+nnoremap <C-S-Down> <C-W><C-J>
+nnoremap <C-S-Up> <C-W><C-K>
+nnoremap <C-S-Right> <C-W><C-L>
+nnoremap <C-S-Left> <C-W><C-H>
 
 set listchars=tab:⎸\ ,trail:·
 set list
