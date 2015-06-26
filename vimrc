@@ -103,10 +103,18 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_close_button = 0
+if has("gui_running")
+	let g:airline_powerline_fonts = 1
+endif
 
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_WinWidth = 50
 nnoremap <leader>l :Tlist<cr>
+
+
+nnoremap <leader>u :GundoToggle<cr>
+nnoremap <leader>b :Gblame<cr>
+nnoremap <leader>f :ClangFormatAutoToggle<cr>
 
 au BufRead,BufNewFile *.md set filetype=markdown
 
