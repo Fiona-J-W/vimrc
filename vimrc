@@ -36,12 +36,8 @@ vnoremap / /\v
 " Clear search-results
 nnoremap <leader><space> :noh<cr>
 
-nnoremap <C-PageUp> :bprevious<CR>
-nnoremap <C-PageDown> :bnext<CR>
-"nnoremap <C-Tab> :bnext<CR>
-"nnoremap <C-S-Tab> :bnext<CR>
-"nnoremap <C-PageUp> :tabprevious<CR>
-"nnoremap <C-PageDown> :tabnext<CR>
+nnoremap <C-PageUp> :bprevious!<CR>
+nnoremap <C-PageDown> :bnext!<CR>
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
