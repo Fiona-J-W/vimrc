@@ -15,7 +15,7 @@ set wildmenu " zsh-style autocomplete
 set wildmode=list:longest
 set laststatus=2
 
-let mapleader=","
+let mapleader=" "
 
 
 set directory^=$HOME/.vim/swapfile//
