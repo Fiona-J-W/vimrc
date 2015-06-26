@@ -1,4 +1,4 @@
-set gfn=Terminess\ Powerline\ 6
+set gfn=Terminess\ Powerline\ 7
 set go=agirLt
-colorscheme koehler
+colorscheme pablo
 
