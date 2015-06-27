@@ -121,6 +121,7 @@ nnoremap <leader>g :YcmCompleter GoTo<cr>
 nnoremap <leader>l :Tlist<cr>
 nnoremap <leader>u :GundoToggle<cr>
 nnoremap <leader>b :Gblame<cr>
+nnoremap <leader>e :Explore<cr>
 nnoremap <leader>f :ClangFormatAutoToggle<cr>
 
 
