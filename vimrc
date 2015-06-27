@@ -122,7 +122,8 @@ nnoremap <leader>l :Tlist<cr>
 nnoremap <leader>u :GundoToggle<cr>
 nnoremap <leader>b :Gblame<cr>
 nnoremap <leader>e :Explore<cr>
-nnoremap <leader>f :ClangFormatAutoToggle<cr>
+nnoremap <leader>f :ClangFormat<cr>
+nnoremap <leader>m <C-W>_
 
 
 nmap <leader>1 <Plug>AirlineSelectTab1
