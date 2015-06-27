@@ -34,7 +34,7 @@ nnoremap / /\v
 vnoremap / /\v
 
 " Clear search-results
-nnoremap <leader><space> :noh<cr>
+nnoremap <leader>/ :noh<cr>
 
 nnoremap <C-PageUp> :bprevious!<CR>
 nnoremap <C-PageDown> :bnext!<CR>
@@ -71,6 +71,7 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/Vim-fugitive'
 Plugin 'tommcdo/vim-fugitive-blame-ext'
 Plugin 'taglist.vim'
+Plugin 'easymotion/vim-easymotion'
 call vundle#end()
 
 " Plugin-options
