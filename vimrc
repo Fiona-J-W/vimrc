@@ -71,7 +71,7 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/Vim-fugitive'
 Plugin 'tommcdo/vim-fugitive-blame-ext'
 Plugin 'taglist.vim'
-Plugin 'easymotion/vim-easymotion'
+Plugin 'Florianjw/vim-cbuild'
 call vundle#end()
 
 " Plugin-options
@@ -125,6 +125,7 @@ nnoremap <leader>b :Gblame<cr>
 nnoremap <leader>e :Explore<cr>
 nnoremap <leader>f :ClangFormat<cr>
 nnoremap <leader>m <C-W>_
+nnoremap <leader>b :CBuild 
 
 
 nmap <leader>1 <Plug>AirlineSelectTab1
