@@ -123,7 +123,8 @@ nnoremap <leader>b :Gblame<cr>
 nnoremap <leader>e :Explore<cr>
 nnoremap <leader>f :ClangFormat<cr>
 nnoremap <leader>m <C-W>_
-nnoremap <leader>b :CBuild 
+nnoremap <leader>ct :let g:cbuild_default_build_type=""<Left>
+nnoremap <leader>cb :CBuild<cr>
 
 
 nmap <leader>1 <Plug>AirlineSelectTab1
