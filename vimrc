@@ -14,6 +14,7 @@ set updatetime=100 " ms
 set wildmenu " zsh-style autocomplete
 set wildmode=list:longest
 set laststatus=2
+set cinoptions=g0N-s " don't indent namespace and public/private
 
 let mapleader=" "
 
@@ -69,6 +70,7 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/Vim-fugitive'
 Plugin 'tommcdo/vim-fugitive-blame-ext'
 Plugin 'taglist.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'Florianjw/vim-cbuild'
 call vundle#end()
 
@@ -108,12 +110,13 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-if has("gui_running")
-	let g:airline_powerline_fonts = 1
-endif
+
+let g:airline_powerline_fonts = 1
 
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_WinWidth = 50
+
+let g:ackprg = 'ag --vimgrep'
 
 nnoremap <leader>t :YcmCompleter GetType<cr>
 nnoremap <leader>g :YcmCompleter GoTo<cr>
