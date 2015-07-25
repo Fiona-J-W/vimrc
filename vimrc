@@ -72,6 +72,7 @@ Plugin 'tommcdo/vim-fugitive-blame-ext'
 Plugin 'taglist.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'Florianjw/vim-cbuild'
+Plugin 'vim-scripts/Conque-GDB'
 call vundle#end()
 
 " Plugin-options
@@ -128,6 +129,7 @@ nnoremap <leader>f :ClangFormat<cr>
 nnoremap <leader>m <C-W>_
 nnoremap <leader>ct :let g:cbuild_default_build_type=""<Left>
 nnoremap <leader>cb :CBuild<cr>
+nnoremap <leader>d :ConqueGdb 
 
 
 nmap <leader>1 <Plug>AirlineSelectTab1
