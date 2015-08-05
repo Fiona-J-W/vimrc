@@ -89,6 +89,7 @@ let g:pandoc#command#latex_engine= "pdflatex"
 let g:pandoc#syntax#codeblocks#embeds#langs = ["haskell", "literatehaskell=lhaskell", "cpp", "java"]
 let g:pandoc#syntax#conceal#blacklist = ["codeblock_start", "codeblock_delim"]
 
+let g:ConqueGdb_Leader = ','
 
 let g:clang_format#style_options = {
 	\ "BasedOnStyle": "llvm",
