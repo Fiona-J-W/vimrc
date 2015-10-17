@@ -73,13 +73,14 @@ Plugin 'taglist.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'Florianjw/vim-cbuild'
 Plugin 'vim-scripts/Conque-GDB'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 call vundle#end()
 
 " Plugin-options
 
 
 let g:ycm_global_ycm_extra_conf = '~/.config/ycm/.ycm_extra_conf.py'
-let g:ycm_extra_conf_globlist = ['~/entwicklung/c++/*', '~/Studium/*', '~/entwicklung/test/*', '/tmp/*']
+let g:ycm_extra_conf_globlist = ['~/Entwicklung/c++/*', '~/Studium/*', '~/Entwicklung/test/*', '/tmp/*']
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt=0
 let g:ycm_enable_diagnostic_signs = 0
@@ -91,6 +92,7 @@ let g:pandoc#syntax#conceal#blacklist = ["codeblock_start", "codeblock_delim"]
 
 let g:ConqueGdb_Leader = ','
 
+let g:clang_format#command = 'clang-format-3.5'
 let g:clang_format#style_options = {
 	\ "BasedOnStyle": "llvm",
 	\ "IndentWidth": 8,
@@ -119,6 +121,8 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_WinWidth = 50
 
 let g:ackprg = 'ag --vimgrep'
+
+let g:cbuild_default_build_type = "release"
 
 nnoremap <leader>t :YcmCompleter GetType<cr>
 nnoremap <leader>g :YcmCompleter GoTo<cr>
