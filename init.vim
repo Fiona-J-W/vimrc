@@ -1,5 +1,4 @@
 
-set nocompatible
 set tabstop=8
 set shiftwidth=8
 set nu
@@ -9,19 +8,19 @@ set autoindent
 set cursorline
 set t_Co=256 " Colors
 set mouse=a
-set listchars=tab:⎸\ ,trail:·
 set updatetime=100 " ms
 set wildmenu " zsh-style autocomplete
 set wildmode=list:longest
 set laststatus=2
 set cinoptions=g0N-s " don't indent namespace and public/private
+set noeb vb t_vb=
+
 
 let mapleader=" "
 
 
-set directory^=$HOME/.vim/swapfile//
 set undofile
-set undodir^=$HOME/.vim/undofile//
+set undodir^=$HOME/.local/share/nvim/undofile//
 
 
 set gdefault   " replace works globaly
@@ -53,46 +52,33 @@ nnoremap <C-S-Left> <C-W><C-H>
 set listchars=tab:⎸\ ,trail:·
 set list
 
+set runtimepath+=~/usr/share/vim/vimfiles/autoload
+set runtimepath+=~/.local/share/nvim/dein/repos/github.com/Shougo/dein.vim
 
-" Vundle
-filetype off
+if dein#load_state('~/.local/share/nvim/dein')
+	call dein#begin('~/.local/share/nvim/dein')
+		call dein#add('~/.local/share/nvim/dein/repos/github.com/Shougo/dein.vim')
+		call dein#add('bling/vim-airline')
+		call dein#add('Florianjw/vim-cbuild')
+		call dein#add('rhysd/vim-clang-format')
+		call dein#add('Shougo/deoplete.nvim')
+		call dein#add('tpope/Vim-fugitive')
+		call dein#add('simnalamburt/vim-mundo')
+		call dein#add('numirias/semshi')
+	call dein#end()
+	call dein#save_state()
+endif
 filetype plugin indent on
-set rtp+=~/.vim/bundle/vundle
-
-call vundle#begin()
-Plugin 'gmarik/vundle'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'sjl/gundo.vim'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/Vim-fugitive'
-Plugin 'tommcdo/vim-fugitive-blame-ext'
-Plugin 'taglist.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'Florianjw/vim-cbuild'
-Plugin 'vim-scripts/Conque-GDB'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-call vundle#end()
-
-" Plugin-options
+syntax enable
 
 
-let g:ycm_global_ycm_extra_conf = '~/.config/ycm/.ycm_extra_conf.py'
-let g:ycm_extra_conf_globlist = ['~/Entwicklung/c++/*', '~/Studium/*', '~/Entwicklung/test/*', '/tmp/*']
-set completeopt-=preview
+let g:ycm_global_ycm_extra_conf = '/home/florian/.config/ycm/conf.py'
+let g:ycm_extra_conf_globlist = ['~/dev/c++/*', '~/studium/*', '~/dev/test/*', '/tmp/*']
+set completeopt-=preview "don't show signature in additional buffer that doesn't close by itself
 let g:ycm_add_preview_to_completeopt=0
-let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_signs = 1
 
-let g:pandoc#modules#disabled = ["folding", "spell"]
-let g:pandoc#command#latex_engine= "pdflatex"
-let g:pandoc#syntax#codeblocks#embeds#langs = ["haskell", "literatehaskell=lhaskell", "cpp", "java"]
-let g:pandoc#syntax#conceal#blacklist = ["codeblock_start", "codeblock_delim"]
-
-let g:ConqueGdb_Leader = ','
-
-let g:clang_format#command = 'clang-format-3.5'
+let g:clang_format#command = 'clang-format'
 let g:clang_format#style_options = {
 	\ "BasedOnStyle": "llvm",
 	\ "IndentWidth": 8,
@@ -115,26 +101,19 @@ let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 
-let g:airline_powerline_fonts = 1
-
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_WinWidth = 50
-
-let g:ackprg = 'ag --vimgrep'
-
-let g:cbuild_default_build_type = "release"
 
 nnoremap <leader>t :YcmCompleter GetType<cr>
 nnoremap <leader>g :YcmCompleter GoTo<cr>
-nnoremap <leader>l :Tlist<cr>
-nnoremap <leader>u :GundoToggle<cr>
-nnoremap <leader>b :Gblame<cr>
+nnoremap <leader>r :Semshi rename 
+nnoremap <leader>se :Semshi error<cr>
+nnoremap <leader>sg :Semshi goto error<cr>
+nnoremap <leader>u :MundoToggle<cr>
+nnoremap <leader>b :Git blame<cr>
 nnoremap <leader>e :Explore<cr>
 nnoremap <leader>f :ClangFormat<cr>
-nnoremap <leader>m <C-W>_
 nnoremap <leader>ct :let g:cbuild_default_build_type=""<Left>
 nnoremap <leader>cb :CBuild<cr>
-nnoremap <leader>d :ConqueGdb 
+nnoremap <leader>mk :make!<cr>
 
 
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -146,11 +125,10 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
+map <C-Down> <Plug>AirlineSelectPrevTab
+nmap <leader>[ <Plug>AirlineSelectPrevTab
+map <C-Up> <Plug>AirlineSelectNextTab
+nmap <leader>] <Plug>AirlineSelectNextTab
 nmap <leader>q :bd<cr>
 
 au BufRead,BufNewFile *.md set filetype=markdown
-
-" Switch syntax on:
-syntax on
-colorscheme slate
-
