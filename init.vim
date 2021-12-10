@@ -13,7 +13,9 @@ set wildmenu " zsh-style autocomplete
 set wildmode=list:longest
 set laststatus=2
 set cinoptions=g0N-s " don't indent namespace and public/private
-set noeb vb t_vb=
+set noerrorbells visualbell t_vb=
+set signcolumn=yes
+set clipboard+=unnamedplus
 
 
 let mapleader=" "
@@ -28,10 +30,6 @@ set incsearch  " search while typing
 set hlsearch   " highlight search-results
 set showmatch  " show matching braces
 
-
-" Changes the regex-parser
-nnoremap / /\v
-vnoremap / /\v
 
 " Clear search-results
 nnoremap <leader>/ :noh<cr>
@@ -49,22 +47,24 @@ nnoremap <C-S-Up> <C-W><C-K>
 nnoremap <C-S-Right> <C-W><C-L>
 nnoremap <C-S-Left> <C-W><C-H>
 
-set listchars=tab:⎸\ ,trail:·
+set listchars=tab:⤑\ ,trail:·,nbsp:␣
 set list
 
-set runtimepath+=~/usr/share/vim/vimfiles/autoload
 set runtimepath+=~/.local/share/nvim/dein/repos/github.com/Shougo/dein.vim
 
 if dein#load_state('~/.local/share/nvim/dein')
 	call dein#begin('~/.local/share/nvim/dein')
 		call dein#add('~/.local/share/nvim/dein/repos/github.com/Shougo/dein.vim')
+		call dein#add('neovim/nvim-lspconfig')
 		call dein#add('bling/vim-airline')
-		call dein#add('Florianjw/vim-cbuild')
+		call dein#add('cdelledonne/vim-cmake')
 		call dein#add('rhysd/vim-clang-format')
 		call dein#add('Shougo/deoplete.nvim')
 		call dein#add('tpope/Vim-fugitive')
 		call dein#add('simnalamburt/vim-mundo')
 		call dein#add('numirias/semshi')
+		call dein#add('vim-pandoc/vim-pandoc-syntax')
+		call dein#add('lukas-reineke/indent-blankline.nvim')
 	call dein#end()
 	call dein#save_state()
 endif
@@ -72,11 +72,8 @@ filetype plugin indent on
 syntax enable
 
 
-let g:ycm_global_ycm_extra_conf = '/home/florian/.config/ycm/conf.py'
-let g:ycm_extra_conf_globlist = ['~/dev/c++/*', '~/studium/*', '~/dev/test/*', '/tmp/*']
-set completeopt-=preview "don't show signature in additional buffer that doesn't close by itself
-let g:ycm_add_preview_to_completeopt=0
-let g:ycm_enable_diagnostic_signs = 1
+lua require'lspconfig'.clangd.setup{}
+lua require'lspconfig'.texlab.setup{}
 
 let g:clang_format#command = 'clang-format'
 let g:clang_format#style_options = {
@@ -93,6 +90,12 @@ let g:clang_format#style_options = {
 	\ "ConstructorInitializerIndentWidth": 8
 	\}
 
+let g:cmake_build_dir_location='build'
+let g:cmake_link_compile_commands=1
+augroup vim-cmake-group
+	autocmd! User CMakeBuildSucceeded CMakeClose
+augroup END
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tabs = 0
@@ -101,9 +104,15 @@ let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 
+let g:pandoc#syntax#conceal#use = 0
 
-nnoremap <leader>t :YcmCompleter GetType<cr>
-nnoremap <leader>g :YcmCompleter GoTo<cr>
+let g:indent_blankline_char = '▍'
+let g:indent_blankline_max_indent_increase = 1
+let g:indent_blankline_show_trailing_blankline_indent = v:false
+let g:indent_blankline_strict_tabs = v:true
+
+let g:deoplete#enable_at_startup = 1
+
 nnoremap <leader>r :Semshi rename 
 nnoremap <leader>se :Semshi error<cr>
 nnoremap <leader>sg :Semshi goto error<cr>
@@ -111,8 +120,8 @@ nnoremap <leader>u :MundoToggle<cr>
 nnoremap <leader>b :Git blame<cr>
 nnoremap <leader>e :Explore<cr>
 nnoremap <leader>f :ClangFormat<cr>
-nnoremap <leader>ct :let g:cbuild_default_build_type=""<Left>
-nnoremap <leader>cb :CBuild<cr>
+nnoremap <leader>cs :CMakeSwitch <Left>
+nnoremap <leader>cb :CMakeBuild<cr>
 nnoremap <leader>mk :make!<cr>
 
 
@@ -125,10 +134,11 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
-map <C-Down> <Plug>AirlineSelectPrevTab
+map <C-Left> <Plug>AirlineSelectPrevTab
 nmap <leader>[ <Plug>AirlineSelectPrevTab
-map <C-Up> <Plug>AirlineSelectNextTab
+map <C-Right> <Plug>AirlineSelectNextTab
 nmap <leader>] <Plug>AirlineSelectNextTab
 nmap <leader>q :bd<cr>
 
-au BufRead,BufNewFile *.md set filetype=markdown
+au BufRead,BufNewFile *.md set filetype=markdown.pandoc
+
