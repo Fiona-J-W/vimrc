@@ -17,9 +17,9 @@ set noerrorbells visualbell t_vb=
 set signcolumn=yes
 set clipboard+=unnamedplus
 
+au BufRead,BufNewFile *.txt,*.tex,*.md set wrap linebreak nolist textwidth=0 wrapmargin=0
 
 let mapleader=" "
-
 
 set undofile
 set undodir^=$HOME/.local/share/nvim/undofile//
@@ -59,12 +59,20 @@ if dein#load_state('~/.local/share/nvim/dein')
 		call dein#add('bling/vim-airline')
 		call dein#add('cdelledonne/vim-cmake')
 		call dein#add('rhysd/vim-clang-format')
-		call dein#add('Shougo/deoplete.nvim')
+		call dein#add('tell-k/vim-autopep8')
 		call dein#add('tpope/Vim-fugitive')
 		call dein#add('simnalamburt/vim-mundo')
 		call dein#add('numirias/semshi')
 		call dein#add('vim-pandoc/vim-pandoc-syntax')
 		call dein#add('lukas-reineke/indent-blankline.nvim')
+		call dein#add('hrsh7th/cmp-nvim-lsp')
+		call dein#add('hrsh7th/cmp-buffer')
+		call dein#add('hrsh7th/cmp-path')
+		call dein#add('hrsh7th/cmp-cmdline')
+		call dein#add('hrsh7th/nvim-cmp')
+		call dein#add('hrsh7th/cmp-vsnip')
+		call dein#add('hrsh7th/vim-vsnip')
+
 	call dein#end()
 	call dein#save_state()
 endif
@@ -74,6 +82,23 @@ syntax enable
 
 lua require'lspconfig'.clangd.setup{}
 lua require'lspconfig'.texlab.setup{}
+lua require'lspconfig'.pyright.setup{}
+
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_tabs = 0
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+let g:cmake_build_dir_location='build'
+let g:cmake_link_compile_commands=1
+augroup vim-cmake-group
+	autocmd! User CMakeBuildSucceeded CMakeClose
+augroup END
 
 let g:clang_format#command = 'clang-format'
 let g:clang_format#style_options = {
@@ -90,19 +115,10 @@ let g:clang_format#style_options = {
 	\ "ConstructorInitializerIndentWidth": 8
 	\}
 
-let g:cmake_build_dir_location='build'
-let g:cmake_link_compile_commands=1
-augroup vim-cmake-group
-	autocmd! User CMakeBuildSucceeded CMakeClose
-augroup END
+let g:autopep8_aggressive=1
+let g:autopep8_disable_show_diff=1
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
-let g:airline#extensions#tabline#show_tabs = 0
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#buffer_idx_mode = 1
+"let g:deoplete#enable_at_startup = 1
 
 let g:pandoc#syntax#conceal#use = 0
 
@@ -111,18 +127,19 @@ let g:indent_blankline_max_indent_increase = 1
 let g:indent_blankline_show_trailing_blankline_indent = v:false
 let g:indent_blankline_strict_tabs = v:true
 
-let g:deoplete#enable_at_startup = 1
-
-nnoremap <leader>r :Semshi rename 
-nnoremap <leader>se :Semshi error<cr>
-nnoremap <leader>sg :Semshi goto error<cr>
+set completeopt=menu,menuone,noselect,noinsert
+lua require('nvimcmp')
 nnoremap <leader>u :MundoToggle<cr>
 nnoremap <leader>b :Git blame<cr>
 nnoremap <leader>e :Explore<cr>
-nnoremap <leader>f :ClangFormat<cr>
-nnoremap <leader>cs :CMakeSwitch <Left>
-nnoremap <leader>cb :CMakeBuild<cr>
 nnoremap <leader>mk :make!<cr>
+au FileType python nnoremap <buffer> <leader>r :Semshi rename
+au FileType python nnoremap <buffer> <leader>se :Semshi error<cr>
+au FileType python nnoremap <buffer> <leader>sg :Semshi goto error<cr>
+au FileType python nnoremap <buffer> <leader>f :call Autopep8()<cr>
+au FileType c,cpp nnoremap <buffer> <leader>f :ClangFormat<cr>
+au FileType c,cpp nnoremap <buffer> <leader>cs :CMakeSwitch <Left>
+au FileType c,cpp nnoremap <buffer> <leader>cb :CMakeBuild<cr>
 
 
 nmap <leader>1 <Plug>AirlineSelectTab1
