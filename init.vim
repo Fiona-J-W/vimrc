@@ -94,7 +94,7 @@ let g:airline#extensions#tabline#buffer_idx_mode   = 1
 let g:cmake_build_dir_location                     = 'build'
 let g:cmake_link_compile_commands                  = 1
 let g:cmake_generate_options                       = ['-GNinja']
-let g:cmake_jump_on_error                          = 0
+let g:cmake_jump_on_error                          = 1
 let g:cmake_link_compile_commands                  = 1
 let g:cmake_root_markers                           = ['.git', 'src']
 
@@ -129,35 +129,36 @@ nnoremap <leader>u  :MundoToggle<cr>
 nnoremap <leader>b  :Git blame<cr>
 nnoremap <leader>e  :Explore<cr>
 nnoremap <leader>mk :make!<cr>
-au FileType python nnoremap <buffer> <leader>r   :Semshi rename
-au FileType python nnoremap <buffer> <leader>se  :Semshi error<cr>
-au FileType python nnoremap <buffer> <leader>sg  :Semshi goto error<cr>
-au FileType python nnoremap <buffer> <leader>f   :call Autopep8()<cr>
-au FileType c,cpp  nnoremap <buffer> <leader>f   :ClangFormat<cr>
-au FileType c,cpp  nnoremap <buffer> <leader>csd :CMakeSwitch Debug<cr>
-au FileType c,cpp  nnoremap <buffer> <leader>csr :CMakeSwitch Release<cr>
-au FileType c,cpp  nnoremap <buffer> <leader>cg  :CMakeGenerate<cr>
-au FileType c,cpp  nnoremap <buffer> <leader>cb  :CMakeBuild<cr>
-au FileType c,cpp  nnoremap <buffer> <leader>cq  :CMakeClose<cr>
+au FileType python      nnoremap <buffer> <leader>r   :Semshi rename
+au FileType python      nnoremap <buffer> <leader>se  :Semshi error<cr>
+au FileType python      nnoremap <buffer> <leader>sg  :Semshi goto error<cr>
+au FileType python      nnoremap <buffer> <leader>f   :call Autopep8()<cr>
+au FileType c,cpp,cmake nnoremap <buffer> <leader>f   :ClangFormat<cr>
+au FileType c,cpp,cmake nnoremap <buffer> <leader>csd :CMakeSwitch Debug<cr>
+au FileType c,cpp,cmake nnoremap <buffer> <leader>csr :CMakeSwitch Release<cr>
+au FileType c,cpp,cmake nnoremap <buffer> <leader>cgd :CMakeGenerate Debug<cr>
+au FileType c,cpp,cmake nnoremap <buffer> <leader>cgr :CMakeGenerate Release<cr>
+au FileType c,cpp,cmake nnoremap <buffer> <leader>cb  :CMakeBuild<cr>
+au FileType c,cpp,cmake nnoremap <buffer> <leader>cq  :CMakeClose<cr>
 
 augroup vim-cmake-group
 	autocmd! User CMakeBuildSucceeded CMakeClose
 augroup END
 
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-map  <C-Left>  <Plug>AirlineSelectPrevTab
-nmap <leader>[ <Plug>AirlineSelectPrevTab
-map  <C-Right> <Plug>AirlineSelectNextTab
-nmap <leader>] <Plug>AirlineSelectNextTab
-nmap <leader>q :bd<cr>
+nmap <leader>1   <Plug>AirlineSelectTab1
+nmap <leader>2   <Plug>AirlineSelectTab2
+nmap <leader>3   <Plug>AirlineSelectTab3
+nmap <leader>4   <Plug>AirlineSelectTab4
+nmap <leader>5   <Plug>AirlineSelectTab5
+nmap <leader>6   <Plug>AirlineSelectTab6
+nmap <leader>7   <Plug>AirlineSelectTab7
+nmap <leader>8   <Plug>AirlineSelectTab8
+nmap <leader>9   <Plug>AirlineSelectTab9
+nmap <S-C-Left>  <Plug>AirlineSelectPrevTab
+nmap <leader>[   <Plug>AirlineSelectPrevTab
+nmap <S-C-Right> <Plug>AirlineSelectNextTab
+nmap <leader>]   <Plug>AirlineSelectNextTab
+nmap <leader>q   :bd<cr>
 
 au BufRead,BufNewFile *.md set filetype=markdown.pandoc
 
