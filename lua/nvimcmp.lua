@@ -14,6 +14,10 @@ cmp.setup({
 	mapping = {
 		['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
 		['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+		['<S-Tab>'] = cmp.mapping.select_prev_item(select_opts),
+		['<Up>'] = cmp.mapping.select_prev_item(select_opts),
+		['<Tab>'] = cmp.mapping.select_next_item(select_opts),
+		['<Down>'] = cmp.mapping.select_next_item(select_opts),
 		['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
 		['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 		['<C-e>'] = cmp.mapping({
@@ -23,7 +27,8 @@ cmp.setup({
 		-- Accept currently selected item. If none selected, `select` first item.
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		['<CR>'] = cmp.mapping.confirm({ select = false}),
-		['<Tab>'] = cmp.mapping.confirm({ select = true }),
+		[' '] = cmp.mapping.confirm({ select = false}),
+		['<C-CR>'] = cmp.mapping.confirm({ select = true}),
 	},
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
@@ -53,12 +58,9 @@ cmp.setup.cmdline(':', {
 })
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 require('lspconfig')['clangd'].setup {
-	capabilities = capabilities
-}
-require('lspconfig')['texlab'].setup {
 	capabilities = capabilities
 }
 require('lspconfig')['pyright'].setup {

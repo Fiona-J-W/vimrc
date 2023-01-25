@@ -125,6 +125,7 @@ let g:indent_blankline_show_trailing_blankline_indent = v:false
 let g:indent_blankline_strict_tabs = v:true
 
 set completeopt=menu,menuone,noselect,noinsert
+
 lua require('nvimcmp')
 nnoremap <leader>u  :MundoToggle<cr>
 nnoremap <leader>b  :Git blame<cr>
