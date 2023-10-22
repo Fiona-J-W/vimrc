@@ -49,11 +49,11 @@ nnoremap <C-S-Left> <C-W><C-H>
 set listchars=tab:⤑\ ,trail:·,nbsp:␣
 set list
 
-set runtimepath+=~/.local/share/nvim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=$HOME/.local/share/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('~/.local/share/nvim/dein')
+if dein#load_state('~/.local/share/dein')
 	call dein#begin('~/.local/share/nvim/dein')
-		call dein#add('~/.local/share/nvim/dein/repos/github.com/Shougo/dein.vim')
+		call dein#add('~/.local/share/dein/repos/github.com/Shougo/dein.vim')
 		call dein#add('neovim/nvim-lspconfig')
 		call dein#add('bling/vim-airline')
 		call dein#add('cdelledonne/vim-cmake')
@@ -62,7 +62,6 @@ if dein#load_state('~/.local/share/nvim/dein')
 		call dein#add('tpope/Vim-fugitive')
 		call dein#add('simnalamburt/vim-mundo')
 		call dein#add('numirias/semshi')
-		call dein#add('vim-pandoc/vim-pandoc-syntax')
 		call dein#add('lukas-reineke/indent-blankline.nvim')
 		call dein#add('hrsh7th/cmp-nvim-lsp')
 		call dein#add('hrsh7th/cmp-buffer')
@@ -71,6 +70,7 @@ if dein#load_state('~/.local/share/nvim/dein')
 		call dein#add('hrsh7th/nvim-cmp')
 		call dein#add('hrsh7th/cmp-vsnip')
 		call dein#add('hrsh7th/vim-vsnip')
+		call dein#add('vim-pandoc/vim-pandoc-syntax')
 	call dein#end()
 	call dein#save_state()
 endif
@@ -124,6 +124,9 @@ let g:indent_blankline_max_indent_increase = 1
 let g:indent_blankline_show_trailing_blankline_indent = v:false
 let g:indent_blankline_strict_tabs = v:true
 
+"lua require("ibl").setup()
+lua require("IndentBlankLine")
+
 set completeopt=menu,menuone,noselect,noinsert
 
 lua require('nvimcmp')
@@ -162,6 +165,6 @@ nmap <S-C-Right> <Plug>AirlineSelectNextTab
 nmap <leader>]   <Plug>AirlineSelectNextTab
 nmap <leader>q   :bd<cr>
 
-augroup pandoc_syntax
-    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-augroup END
+"augroup pandoc_syntax
+"    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+"augroup END
