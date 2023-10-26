@@ -5,7 +5,6 @@ set encoding=utf-8
 set scrolloff=3
 set autoindent
 set cursorline
-set t_Co=256 " Colors
 set mouse=a
 set updatetime=100 " ms
 set wildmenu " zsh-style autocomplete
@@ -121,12 +120,9 @@ let g:autopep8_disable_show_diff=1
 
 let g:pandoc#syntax#conceal#use = 0
 
-let g:indent_blankline_char = '▍'
 let g:indent_blankline_max_indent_increase = 1
 let g:indent_blankline_show_trailing_blankline_indent = v:false
 let g:indent_blankline_strict_tabs = v:true
-
-"lua require("ibl").setup()
 lua require("IndentBlankLine")
 
 set completeopt=menu,menuone,noselect,noinsert
@@ -136,7 +132,7 @@ nnoremap <leader>u  :MundoToggle<cr>
 nnoremap <leader>b  :Git blame<cr>
 nnoremap <leader>e  :Explore<cr>
 nnoremap <leader>mk :make!<cr>
-au FileType python      nnoremap <buffer> <leader>r   :Semshi rename
+au FileType python      nnoremap <buffer> <leader>r\  :Semshi rename
 au FileType python      nnoremap <buffer> <leader>se  :Semshi error<cr>
 au FileType python      nnoremap <buffer> <leader>sg  :Semshi goto error<cr>
 au FileType python      nnoremap <buffer> <leader>f   :call Autopep8()<cr>
@@ -166,6 +162,8 @@ nmap <leader>[   <Plug>AirlineSelectPrevTab
 nmap <S-C-Right> <Plug>AirlineSelectNextTab
 nmap <leader>]   <Plug>AirlineSelectNextTab
 nmap <leader>q   :bd<cr>
+
+hi SpellBad guibg=Red guifg=white
 
 augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
