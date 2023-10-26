@@ -167,6 +167,6 @@ nmap <S-C-Right> <Plug>AirlineSelectNextTab
 nmap <leader>]   <Plug>AirlineSelectNextTab
 nmap <leader>q   :bd<cr>
 
-"augroup pandoc_syntax
-"    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-"augroup END
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
