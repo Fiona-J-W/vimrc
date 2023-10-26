@@ -16,6 +16,8 @@ set noerrorbells visualbell t_vb=
 set signcolumn=yes
 set clipboard+=unnamedplus
 set hidden
+set termguicolors
+
 
 au BufRead,BufNewFile *.txt,*.tex,*.md set wrap linebreak nolist textwidth=0 wrapmargin=0
 
