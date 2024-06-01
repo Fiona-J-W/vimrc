@@ -30,6 +30,9 @@ set incsearch  " search while typing
 set hlsearch   " highlight search-results
 set showmatch  " show matching braces
 
+colorscheme koehler
+highlight Normal ctermbg=NONE guibg=NONE
+
 
 " Clear search-results
 nnoremap <leader>/ :noh<cr>
