@@ -165,6 +165,7 @@ nmap <leader>q   :bd<cr>
 
 hi SpellBad guibg=Red guifg=white
 
+set nofoldenable    " disable folding
 augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
 augroup END
