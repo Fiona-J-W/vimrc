@@ -53,31 +53,8 @@ nnoremap <C-S-Left> <C-W><C-H>
 set listchars=tab:⤑\ ,trail:·,nbsp:␣
 set list
 
-set runtimepath+=$HOME/.local/share/dein/repos/github.com/Shougo/dein.vim
+lua require('plugins')
 
-if dein#load_state('~/.local/share/dein')
-	call dein#begin('~/.local/share/nvim/dein')
-		call dein#add('~/.local/share/dein/repos/github.com/Shougo/dein.vim')
-		call dein#add('neovim/nvim-lspconfig')
-		call dein#add('bling/vim-airline')
-		call dein#add('cdelledonne/vim-cmake')
-		call dein#add('rhysd/vim-clang-format')
-		call dein#add('tell-k/vim-autopep8')
-		call dein#add('tpope/Vim-fugitive')
-		call dein#add('simnalamburt/vim-mundo')
-		call dein#add('numirias/semshi')
-		call dein#add('lukas-reineke/indent-blankline.nvim')
-		call dein#add('hrsh7th/cmp-nvim-lsp')
-		call dein#add('hrsh7th/cmp-buffer')
-		call dein#add('hrsh7th/cmp-path')
-		call dein#add('hrsh7th/cmp-cmdline')
-		call dein#add('hrsh7th/nvim-cmp')
-		call dein#add('hrsh7th/cmp-vsnip')
-		call dein#add('hrsh7th/vim-vsnip')
-		call dein#add('vim-pandoc/vim-pandoc-syntax')
-	call dein#end()
-	call dein#save_state()
-endif
 filetype plugin indent on
 syntax enable
 
@@ -135,7 +112,7 @@ nnoremap <leader>u  :MundoToggle<cr>
 nnoremap <leader>b  :Git blame<cr>
 nnoremap <leader>e  :Explore<cr>
 nnoremap <leader>mk :make!<cr>
-au FileType python      nnoremap <buffer> <leader>r\  :Semshi rename
+au FileType python      nnoremap <buffer> <leader>r  :Semshi rename<cr>
 au FileType python      nnoremap <buffer> <leader>se  :Semshi error<cr>
 au FileType python      nnoremap <buffer> <leader>sg  :Semshi goto error<cr>
 au FileType python      nnoremap <buffer> <leader>f   :call Autopep8()<cr>
