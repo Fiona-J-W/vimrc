@@ -113,7 +113,7 @@ lua require('nvimcmp')
 nnoremap <leader>u  :MundoToggle<cr>
 nnoremap <leader>b  :Git blame<cr>
 nnoremap <leader>e  :Explore<cr>
-nnoremap <leader>mk :make -j32<cr>
+nnoremap <leader>mk :make! -j32<cr>
 au FileType python      nnoremap <buffer> <leader>r  :Semshi rename<cr>
 au FileType python      nnoremap <buffer> <leader>se  :Semshi error<cr>
 au FileType python      nnoremap <buffer> <leader>sg  :Semshi goto error<cr>
