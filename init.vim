@@ -1,6 +1,7 @@
 set tabstop=8
 set shiftwidth=8
 set nu
+set noet
 set encoding=utf-8
 set scrolloff=3
 set autoindent
@@ -17,6 +18,7 @@ set clipboard+=unnamedplus
 set hidden
 set termguicolors
 
+let g:markdown_recommended_style=0
 
 au BufRead,BufNewFile *.txt,*.tex,*.md set wrap linebreak nolist textwidth=0 wrapmargin=0
 
@@ -111,7 +113,7 @@ lua require('nvimcmp')
 nnoremap <leader>u  :MundoToggle<cr>
 nnoremap <leader>b  :Git blame<cr>
 nnoremap <leader>e  :Explore<cr>
-nnoremap <leader>mk :make!<cr>
+nnoremap <leader>mk :make -j32<cr>
 au FileType python      nnoremap <buffer> <leader>r  :Semshi rename<cr>
 au FileType python      nnoremap <buffer> <leader>se  :Semshi error<cr>
 au FileType python      nnoremap <buffer> <leader>sg  :Semshi goto error<cr>
