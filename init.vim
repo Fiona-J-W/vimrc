@@ -81,10 +81,8 @@ let g:cmake_link_compile_commands                  = 1
 let g:cmake_root_markers                           = ['.git', 'src']
 
 let g:clang_format#command = 'clang-format'
+let g:clang_format#code_style = 'llvm'
 let g:clang_format#style_options = {
-	\ "BasedOnStyle": "llvm",
-	\ "IndentWidth": 8,
-	\ "TabWidth": 8,
 	\ "ContinuationIndentWidth": 8,
 	\ "UseTab": "ForIndentation",
 	\ "BreakBeforeBraces": "Attach",
@@ -94,7 +92,7 @@ let g:clang_format#style_options = {
 	\ "AccessModifierOffset": -8,
 	\ "ConstructorInitializerIndentWidth": 8
 	\}
-
+	
 let g:autopep8_aggressive=1
 let g:autopep8_disable_show_diff=1
 
@@ -111,7 +109,7 @@ lua require('nvimcmp')
 nnoremap <leader>u  :MundoToggle<cr>
 nnoremap <leader>b  :Git blame<cr>
 nnoremap <leader>e  :Explore<cr>
-nnoremap <leader>mk :make!<cr>
+nnoremap <leader>mk :make -j 32<cr>
 au FileType python      nnoremap <buffer> <leader>r  :Semshi rename<cr>
 au FileType python      nnoremap <buffer> <leader>se  :Semshi error<cr>
 au FileType python      nnoremap <buffer> <leader>sg  :Semshi goto error<cr>
